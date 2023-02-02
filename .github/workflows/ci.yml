@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main, ci-*]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+          submodules: recursive
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - run: npm install
+      - run: npm run lint:format
+      - run: npm run lint
