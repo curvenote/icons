@@ -1,5 +1,11 @@
 # @curvenote/icons
 
+## 0.0.4
+
+### Patch Changes
+
+- 97d3c24: Improve the readme, pull out to a standalone package
+
 ## 0.0.3
 
 ### Patch Changes
