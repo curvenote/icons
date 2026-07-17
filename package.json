@@ -2,40 +2,48 @@
   "name": "@curvenote/icons",
   "description": "Curvenote icons for react applications",
   "version": "0.0.4",
+  "type": "module",
   "sideEffects": false,
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "license": "MIT",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rm -rf dist",
     "lint": "eslint src/**/**.ts*",
     "lint:format": "prettier --check \"src/**/*.{ts,tsx,md}\"",
-    "dev": "npm-run-all --parallel \"build:* -- --watch\"",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
-    "build:esm": "tsc --module es2020 --outDir dist/esm",
-    "build:types": "tsc --declaration --emitDeclarationOnly --declarationMap --outDir dist/types",
-    "build": "npm-run-all -l clean -p build:cjs build:esm build:types",
+    "dev": "tsc --watch",
+    "build": "bun run clean && tsc",
+    "build:packages": "bun run clean && tsc",
+    "test": "tsc --noEmit",
     "changeset": "changeset",
-    "version": "changeset version && npm install",
-    "publish": "npm run build && changeset publish && git push --follow-tags"
+    "version": "changeset version && bun install",
+    "publish": "bun run clean && bun run build && changeset publish && git push --follow-tags"
   },
   "dependencies": {},
   "peerDependencies": {
-    "@types/react": "^16.8 || ^17.0 || ^18.0",
-    "@types/react-dom": "^16.8 || ^17.0 || ^18.0",
-    "react": "^16.8 || ^17.0 || ^18.0",
-    "react-dom": "^16.8 || ^17.0 || ^18.0"
+    "@types/react": "^16.8 || ^17.0 || ^18.0 || ^19.0",
+    "@types/react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0",
+    "react": "^16.8 || ^17.0 || ^18.0 || ^19.0",
+    "react-dom": "^16.8 || ^17.0 || ^18.0 || ^19.0"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
+    "@changesets/cli": "^2.31.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
     "eslint": "^8.21.0",
-    "eslint-config-curvenote": "latest",
-    "npm-run-all": "^4.1.5",
+    "eslint-plugin-react": "^7.34.0",
     "tsconfig": "latest",
-    "typescript": "latest"
+    "typescript": "^6.0.3"
   }
 }
