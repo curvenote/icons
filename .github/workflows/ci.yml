@@ -2,22 +2,21 @@ name: CI
 
 on:
   push:
-    branches: [main, ci-*]
+    branches: [main, dev, ci-*]
   pull_request:
-    branches: [main]
+    branches: [main, dev]
 
 jobs:
-  lint:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 2
           submodules: recursive
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
-      - run: npm install
-      - run: npm run lint:format
-      - run: npm run lint
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+      - run: bun install
+      - run: bun run lint:format
+      - run: bun run lint
+      - run: bun run test
