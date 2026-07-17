@@ -4,6 +4,14 @@
   "version": "1.0.0",
   "type": "module",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curvenote/icons.git"
+  },
+  "homepage": "https://github.com/curvenote/icons#readme",
+  "bugs": {
+    "url": "https://github.com/curvenote/icons/issues"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
