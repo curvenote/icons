@@ -1,1 +1,1 @@
-export * from './curvenote';
+export * from './curvenote.js';
