@@ -35,7 +35,7 @@
     "test:esm": "bun run build && node test/esm-import.mjs",
     "changeset": "changeset",
     "version": "changeset version && bun install",
-    "publish": "bun run clean && bun run build && changeset publish && git push --follow-tags"
+    "release": "bun run clean && bun run build && changeset publish && git push --follow-tags"
   },
   "dependencies": {},
   "peerDependencies": {
