@@ -43,7 +43,7 @@ jobs:
         uses: changesets/action@v1
         with:
           version: bun run version
-          publish: bun run publish
+          publish: bun run release
           commit: 🚀 Release
           title: 🚀 Release
           createGithubReleases: false
